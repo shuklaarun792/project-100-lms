@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student Registration</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+font-family:Arial;
+}
+
+body{
+margin:0;
+background:linear-gradient(135deg,#2b2f77,#c33764);
+}
+
+/* HEADER */
+
+.header{
+position:fixed;
+top:0;
+width:100%;
+background:#0d0d26;
+padding:18px 60px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+color:white;
+}
+
+.logo{
+font-size:22px;
+font-weight:bold;
+}
+
+.nav a{
+text-decoration:none;
+color:white;
+margin-left:30px;
+font-size:16px;
+}
+
+.nav a:hover{
+color:#00ffd5;
+}
+
+
+/* FORM SECTION */
+
+.container{
+max-width:720px;
+margin:140px auto 60px auto;
+}
+
+
+/* CARD */
+
+.card{
+background:#efefef;
+padding:40px;
+border-radius:12px;
+box-shadow:0 15px 35px rgba(0,0,0,0.3);
+}
+
+.card h2{
+text-align:center;
+margin-bottom:25px;
+}
+
+
+/* GRID */
+
+.form-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
+}
+
+input,select{
+width:100%;
+padding:13px;
+border-radius:6px;
+border:1px solid #ccc;
+font-size:15px;
+}
+
+
+/* ADDRESS FULL WIDTH */
+
+.address{
+grid-column:span 2;
+}
+
+
+/* BUTTON */
+
+button{
+width:100%;
+margin-top:20px;
+padding:14px;
+background:#25a98b;
+border:none;
+color:white;
+font-size:16px;
+border-radius:6px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1f8e75;
+}
+
+
+/* ALL STUDENTS BUTTON */
+
+.view-btn{
+background:#2b2f77;
+margin-top:10px;
+}
+
+.view-btn:hover{
+background:#1b1e4a;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+<div class="logo">📚 Shukla Library</div>
+
+<div class="nav">
+<a href="/">Home</a>
+<a href="{{ url_for('student.register_student') }}">Students</a>
+<a href="{{ url_for('book.book_register') }}">Books</a>
+<a href="{{ url_for('author.author_register') }}">Authors</a>
+</div>
+
+</div>
+
+
+
+<!-- FORM -->
+
+<div class="container">
+
+<div class="card">
+
+<h2>Student Registration</h2>
+
+<form method="POST">
+
+<div class="form-grid">
+
+<input type="text" name="student_name" placeholder="Student Name" required>
+
+<input type="number" name="age" placeholder="Age">
+
+<input type="email" name="email" placeholder="Email">
+
+<input type="text" name="phone" placeholder="Phone Number">
+
+<input type="text" name="address" placeholder="Address" class="address">
+
+</div>
+
+<button type="submit">Register Student</button>
+
+</form>
+
+
+<!-- All Students Button -->
+
+<a href="{{ url_for('student.all_students') }}">
+<button class="view-btn">View All Students</button>
+</a>
+
+
+</div>
+
+</div>
+
+
+</body>
+</html>

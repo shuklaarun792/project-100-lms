@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>All Students</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+font-family:Arial;
+}
+
+body{
+margin:0;
+background:linear-gradient(135deg,#2b2f77,#c33764);
+}
+
+
+/* HEADER */
+
+.header{
+position:fixed;
+top:0;
+width:100%;
+background:#0d0d26;
+padding:18px 60px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+color:white;
+}
+
+.logo{
+font-size:22px;
+font-weight:bold;
+}
+
+.nav a{
+text-decoration:none;
+color:white;
+margin-left:30px;
+font-size:16px;
+}
+
+.nav a:hover{
+color:#00ffd5;
+}
+
+
+/* TABLE SECTION */
+
+.container{
+max-width:1000px;
+margin:140px auto 60px auto;
+background:#efefef;
+padding:40px;
+border-radius:12px;
+box-shadow:0 15px 35px rgba(0,0,0,0.3);
+}
+
+h2{
+text-align:center;
+margin-bottom:25px;
+}
+
+
+/* TABLE */
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+padding:12px;
+border:1px solid #ccc;
+text-align:center;
+}
+
+th{
+background:#2b2f77;
+color:white;
+}
+
+
+/* BUTTONS */
+
+button{
+padding:6px 12px;
+border:none;
+border-radius:5px;
+cursor:pointer;
+color:white;
+margin:2px;
+}
+
+.read{
+background:#007bff;
+}
+
+.edit{
+background:#28a745;
+}
+
+.delete{
+background:#dc3545;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+<div class="logo">📚 Shukla Library</div>
+
+<div class="nav">
+<a href="/">Home</a>
+<a href="{{ url_for('student.register_student') }}">Students</a>
+<a href="{{ url_for('book.book_register') }}">Books</a>
+<a href="{{ url_for('author.author_register') }}">Authors</a>
+</div>
+
+</div>
+
+
+
+<!-- TABLE -->
+
+<div class="container">
+
+<h2>All Students</h2>
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Age</th>
+<th>Email</th>
+<th>Phone</th>
+<th>Actions</th>
+</tr>
+
+{% for student in students %}
+
+<tr>
+
+<td>{{ student.id }}</td>
+<td>{{ student.stu_name }}</td>
+<td>{{ student.stu_age }}</td>
+<td>{{ student.stu_email }}</td>
+<td>{{ student.stu_phone }}</td>
+
+<td>
+
+<!-- READ -->
+
+<a href="{{ url_for('student.student_details', id=student.id) }}">
+<button class="read">Read</button>
+</a>
+
+
+<!-- EDIT -->
+
+<a href="{{ url_for('student.edit_student', id=student.id) }}">
+<button class="edit">Edit</button>
+</a>
+
+
+<!-- DELETE -->
+
+<a href="{{ url_for('student.delete_student', id=student.id) }}">
+<button class="delete">Delete</button>
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+
+</body>
+</html>
