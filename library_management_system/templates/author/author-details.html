@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-<title>Student Details</title>
+<title>Author Details</title>
 
 <style>
 
@@ -117,63 +116,57 @@ transform:scale(1.03);
 
 <div class="card">
 
-<h2>🎓 Student Details</h2>
+<h2>✍ Author Details</h2>
 
 
 <div class="detail">
 <span class="label">ID</span>
-<span>{{ student.id }}</span>
+<span>{{ author.id }}</span>
 </div>
 
 
 <div class="detail">
 <span class="label">Name</span>
-<span>{{ student.stu_name }}</span>
-</div>
-
-
-<div class="detail">
-<span class="label">Age</span>
-<span>{{ student.stu_age }}</span>
+<span>{{ author.author_name }}</span>
 </div>
 
 
 <div class="detail">
 <span class="label">Email</span>
-<span>{{ student.stu_email }}</span>
+<span>{{ author.email }}</span>
+</div>
+
+
+<div class="detail">
+<span class="label">Age</span>
+<span>{{ author.age }}</span>
 </div>
 
 
 <div class="detail">
 <span class="label">Phone</span>
-<span>{{ student.stu_phone }}</span>
+<span>{{ author.phone }}</span>
 </div>
 
 
 <div class="detail">
-<span class="label">Course</span>
-<span>{{ student.stu_course }}</span>
-</div>
-
-
-<div class="detail">
-<span class="label">Address</span>
-<span>{{ student.stu_address }}</span>
+<span class="label">Country</span>
+<span>{{ author.country }}</span>
 </div>
 
 
 
 <div class="btn-group">
 
-<a href="{{ url_for('student.edit_student', id=student.id) }}">
+<a href="{{ url_for('author.edit_author', id=author.id) }}">
 <button class="edit">Edit</button>
 </a>
 
-<a href="{{ url_for('student.delete_student', id=student.id) }}">
+<a href="{{ url_for('author.delete_author', id=author.id) }}">
 <button class="delete">Delete</button>
 </a>
 
-<a href="{{ url_for('student.all_students') }}">
+<a href="{{ url_for('author.all_authors') }}">
 <button class="back">Back</button>
 </a>
 

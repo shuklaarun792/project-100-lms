@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Library Login</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+font-family:Segoe UI;
+}
+
+body{
+margin:0;
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#667eea,#764ba2);
+color:white;
+}
+
+
+/* HEADER TITLE */
+
+.title{
+text-align:center;
+margin-bottom:30px;
+}
+
+.title h1{
+font-size:40px;
+margin:0;
+}
+
+.title p{
+font-size:18px;
+opacity:0.9;
+}
+
+
+/* LOGIN CARD */
+
+.card{
+
+width:380px;
+padding:40px;
+border-radius:20px;
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(15px);
+box-shadow:0 15px 35px rgba(0,0,0,0.3);
+text-align:center;
+
+}
+
+.card h2{
+margin-bottom:20px;
+}
+
+
+/* INPUTS */
+
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:none;
+border-radius:8px;
+outline:none;
+font-size:15px;
+}
+
+
+/* BUTTON */
+
+button{
+
+width:100%;
+padding:12px;
+border:none;
+border-radius:8px;
+background:linear-gradient(45deg,#ff512f,#dd2476);
+color:white;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+
+}
+
+button:hover{
+
+background:linear-gradient(45deg,#00c6ff,#0072ff);
+transform:scale(1.05);
+
+}
+
+
+/* FLASH MESSAGE */
+
+.toast{
+
+background:#ff4d4d;
+padding:10px;
+border-radius:6px;
+margin-bottom:15px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- PROFESSIONAL TITLE -->
+
+<div class="title">
+
+<h1>📚 Welcome to Library Management Portal</h1>
+
+<p>Manage Books • Track Students • Organize Authors</p>
+
+</div>
+
+
+
+<!-- LOGIN CARD -->
+
+<div class="card">
+
+<h2>Login</h2>
+
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+
+{% for message in messages %}
+
+<div class="toast">{{ message }}</div>
+
+{% endfor %}
+
+{% endif %}
+{% endwith %}
+
+
+<form method="POST">
+
+<input type="email" name="email" placeholder="Enter Email" required>
+
+<input type="password" name="password" placeholder="Enter Password" required>
+
+<button type="submit">Login</button>
+
+</form>
+
+</div>
+
+</body>
+</html>

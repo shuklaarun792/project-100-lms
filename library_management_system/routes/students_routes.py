@@ -1,15 +1,14 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, flash, redirect
 from models.student_model import Student
 from db import db
+from flask_bcrypt import Bcrypt
+
+bcrypt = Bcrypt()
 
 student_bp = Blueprint("student", __name__)
 
 
-# -------------------------
-# Student Registration
-# -------------------------
-
-@student_bp.route("/student-register", methods=["GET", "POST"])
+@student_bp.route("/student-register", methods=["GET","POST"])
 def register_student():
 
     if request.method == "POST":
@@ -19,19 +18,26 @@ def register_student():
         email = request.form.get("email")
         phone = request.form.get("phone")
         address = request.form.get("address")
+        course = request.form.get("course")
+        password = request.form.get("password")
+
+        hashed_password = bcrypt.generate_password_hash(password).decode("utf-8")
 
         new_student = Student(
             stu_name=name,
             stu_age=age,
             stu_email=email,
             stu_phone=phone,
-            stu_address=address
+            stu_address=address,
+            stu_course=course,
+            role="student",
+            stu_pass=hashed_password
         )
 
         db.session.add(new_student)
         db.session.commit()
 
-        print("Student saved successfully")
+        flash("Student added successfully!", "success")
 
     return render_template("students/student-register.html")
 
@@ -60,7 +66,7 @@ def student_details(id):
 @student_bp.route("/delete-student/<int:id>")
 def delete_student(id):
 
-    student = Student.query.get(id)
+    student = Student.query.get_or_404(id)
 
     db.session.delete(student)
     db.session.commit()
@@ -77,7 +83,7 @@ def delete_student(id):
 @student_bp.route("/edit-student/<int:id>", methods=["GET","POST"])
 def edit_student(id):
 
-    student = Student.query.get(id)
+    student = Student.query.get_or_404(id)
 
     if request.method == "POST":
 

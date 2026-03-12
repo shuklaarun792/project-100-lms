@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Edit Student</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+
+/* Background */
+
+body{
+height:100vh;
+background:linear-gradient(135deg,#667eea,#764ba2);
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+
+/* Card */
+
+.card{
+width:600px;
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(10px);
+border-radius:20px;
+padding:40px;
+box-shadow:0 10px 40px rgba(0,0,0,0.3);
+color:white;
+}
+
+
+/* Heading */
+
+.card h2{
+text-align:center;
+margin-bottom:25px;
+font-size:30px;
+}
+
+
+/* Grid */
+
+.form-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
+}
+
+
+/* Inputs */
+
+input{
+padding:12px;
+border:none;
+border-radius:8px;
+outline:none;
+font-size:15px;
+}
+
+
+/* Address full width */
+
+.address{
+grid-column:span 2;
+}
+
+
+/* Buttons */
+
+.btn-group{
+margin-top:20px;
+display:flex;
+gap:10px;
+}
+
+button{
+flex:1;
+padding:12px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-size:15px;
+color:white;
+}
+
+
+.update{
+background:#28a745;
+}
+
+.cancel{
+background:#dc3545;
+}
+
+button:hover{
+opacity:0.9;
+transform:scale(1.03);
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="card">
+
+<h2>✏️ Update Student {{student.stu_name }} details</h2>
+
+<form method="POST">
+
+<div class="form-grid">
+
+<input type="text" name="student_name"
+value="{{ student.stu_name }}" placeholder="Student Name">
+
+<input type="number" name="age"
+value="{{ student.stu_age }}" placeholder="Age">
+
+<input type="email" name="email"
+value="{{ student.stu_email }}" placeholder="Email">
+
+<input type="text" name="phone"
+value="{{ student.stu_phone }}" placeholder="Phone Number">
+
+<input type="text" name="course"
+value="{{ student.stu_course }}" placeholder="Course">
+
+<input type="text" name="address"
+value="{{ student.stu_address }}" placeholder="Address"
+class="address">
+
+</div>
+
+
+<div class="btn-group">
+
+<button type="submit" class="update">
+Update Student
+</button>
+
+<a href="{{ url_for('student.all_students') }}">
+<button type="button" class="cancel">
+Cancel
+</button>
+</a>
+
+</div>
+
+</form>
+
+</div>
+
+
+</body>
+</html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Author Registration</title>
+<title>Edit Author</title>
 
 <style>
 
@@ -14,6 +14,7 @@ body{
 margin:0;
 background:linear-gradient(135deg,#141e30,#243b55);
 }
+
 
 /* HEADER */
 
@@ -77,18 +78,12 @@ grid-template-columns:1fr 1fr;
 gap:15px;
 }
 
-input,textarea{
+input{
 width:100%;
 padding:13px;
 border-radius:6px;
 border:1px solid #ccc;
 font-size:15px;
-}
-
-textarea{
-grid-column:span 2;
-height:80px;
-resize:none;
 }
 
 
@@ -98,7 +93,7 @@ button{
 width:100%;
 margin-top:20px;
 padding:14px;
-background:#3498db;
+background:#28a745;
 border:none;
 color:white;
 font-size:16px;
@@ -107,50 +102,19 @@ cursor:pointer;
 }
 
 button:hover{
-background:#2c80b4;
+background:#1e7e34;
 }
 
 
-/* VIEW AUTHORS BUTTON */
+/* BACK BUTTON */
 
-.view-btn{
+.back-btn{
 background:#2b2f77;
 margin-top:10px;
 }
 
-.view-btn:hover{
+.back-btn:hover{
 background:#1b1e4a;
-}
-
-
-/* SUCCESS POPUP */
-
-.toast{
-position:fixed;
-top:20px;
-right:20px;
-background:#2ecc71;
-color:white;
-padding:15px 20px;
-border-radius:8px;
-font-weight:bold;
-box-shadow:0 5px 20px rgba(0,0,0,0.3);
-animation:slideIn 0.5s ease;
-z-index:999;
-}
-
-@keyframes slideIn{
-
-from{
-transform:translateX(100%);
-opacity:0;
-}
-
-to{
-transform:translateX(0);
-opacity:1;
-}
-
 }
 
 </style>
@@ -158,6 +122,7 @@ opacity:1;
 </head>
 
 <body>
+
 
 <!-- HEADER -->
 
@@ -175,64 +140,34 @@ opacity:1;
 </div>
 
 
-<!-- SUCCESS MESSAGE -->
-
-{% with messages = get_flashed_messages(with_categories=true) %}
-{% if messages %}
-
-{% for category, message in messages %}
-
-<div class="toast">
-✔ {{ message }}
-</div>
-
-<script>
-
-setTimeout(function(){
-document.querySelector('.toast').style.display="none";
-},3000);
-
-</script>
-
-{% endfor %}
-
-{% endif %}
-{% endwith %}
-
-
-
-<!-- FORM -->
-
 <div class="container">
 
 <div class="card">
 
-<h2>Author Registration</h2>
+<h2>Edit Author</h2>
 
 <form method="POST">
 
 <div class="form-grid">
 
-<input type="text" name="author_name" placeholder="Author Name" required>
+<input type="text" name="author_name" value="{{ author.author_name }}" required>
 
-<input type="email" name="email" placeholder="Email">
+<input type="email" name="email" value="{{ author.email }}">
 
-<input type="number" name="age" placeholder="Age">
+<input type="number" name="age" value="{{ author.age }}">
 
-<input type="text" name="phone" placeholder="Phone Number">
+<input type="text" name="phone" value="{{ author.phone }}">
 
-<input type="text" name="country" placeholder="Country">
+<input type="text" name="country" value="{{ author.country }}">
 
 </div>
 
-<button type="submit">Add Author</button>
+<button type="submit">Update Author</button>
 
 </form>
 
-<!-- View All Authors Button -->
-
 <a href="{{ url_for('author.all_authors') }}">
-<button class="view-btn">View All Authors</button>
+<button class="back-btn">Back to Authors</button>
 </a>
 
 </div>
